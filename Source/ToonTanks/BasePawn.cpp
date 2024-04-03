@@ -95,3 +95,23 @@ void ABasePawn::Fire()
 
 	Projectile->SetOwner(this);
 }
+
+void ABasePawn::RotateBase(FVector LookAtTarget)
+{
+
+	FVector ToTarget = LookAtTarget - BaseMesh->GetComponentLocation();
+
+	FRotator LookAtRotation = FRotator(0.f, ToTarget.Rotation().Yaw, 0.f);
+
+	BaseMesh->SetWorldRotation
+	(
+		FMath::RInterpTo
+		(
+			BaseMesh->GetComponentRotation(),
+			LookAtRotation,
+			UGameplayStatics::GetWorldDeltaSeconds(this),
+			5.f
+		)
+	);
+
+}
