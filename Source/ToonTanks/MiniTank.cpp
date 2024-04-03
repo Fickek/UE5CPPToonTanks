@@ -90,6 +90,6 @@ void AMiniTank::Move(float DeltaTime)
 
 	RotateBase(Target);
 	
-	SetActorLocation(FMath::VInterpTo(Current, Target, DeltaTime, .3f));
+	SetActorLocation(FMath::VInterpConstantTo(Current, Target, DeltaTime, 100.f));
 
 }
