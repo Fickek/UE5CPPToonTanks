@@ -6,6 +6,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "Tank.h"
 #include "Tower.h"
+#include "MiniTank.h"
 #include "ToonTanksPlayerController.h"
 
 void AToonTanksGameMode::BeginPlay()
@@ -41,6 +42,10 @@ void AToonTanksGameMode::ActorDied(AActor* DeadActor)
 			GameOver(true);
 		}
 
+	}
+	else if (AMiniTank* DestroyedMiniTank = Cast<AMiniTank>(DeadActor)) 
+	{
+		DestroyedMiniTank->HandleDestruction();
 	}
 
 }
