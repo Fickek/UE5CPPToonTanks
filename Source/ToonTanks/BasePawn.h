@@ -27,6 +27,7 @@ public:
 protected:
 
 	void RotateTurret(FVector LookAtTarget);
+	void RotateBase(FVector LookAtTarget);
 	void Fire();
 
 private:
@@ -50,7 +51,7 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category = "Combat")
 	TSubclassOf<class AProjectile> ProjectileClass;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category = "Combat")
 	class UParticleSystem* DeathParticles;
 
 	UPROPERTY(EditAnywhere, Category = "Combat")

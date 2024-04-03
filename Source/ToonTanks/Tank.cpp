@@ -119,5 +119,5 @@ void ATank::Turn(float Value)
 
 	DeltaRotation.Yaw = Value * TurnRate * DeltaTime;
 
-	AddActorLocalRotation(DeltaRotation);
+	AddActorLocalRotation(DeltaRotation, true);
 }
