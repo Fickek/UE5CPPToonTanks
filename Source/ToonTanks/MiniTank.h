@@ -35,11 +35,20 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Combat")
 	float FireRange = 300.f;
 
+	UPROPERTY(EditAnywhere, Category = "Combat")
+	float MoveRange = 300.f;
+
+	UPROPERTY(EditAnywhere, Category = "Combat")
+	float SpeedMoveTank = 100.f;
+
 	FTimerHandle FireRateTimerHandle;
 	float FireRate = 2.f;
-	void CheckFireCondition();
+
+	void CheckFireCondition(); 
+	//void CheckMoveCondition();
 
 	bool InFireRange();
+	bool InMoveRange();
 
 	void Move(float DeltaTime);
 

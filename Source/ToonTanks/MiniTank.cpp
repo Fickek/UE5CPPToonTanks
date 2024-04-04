@@ -33,7 +33,7 @@ void AMiniTank::Tick(float DeltaTime)
 	if (Tank)
 	{
 
-		if (InFireRange())
+		if (InMoveRange() && Tank->bAlive)
 		{
 			Move(DeltaTime);
 			RotateTurret(Tank->GetActorLocation());
@@ -83,13 +83,31 @@ bool AMiniTank::InFireRange()
 
 }
 
+bool AMiniTank::InMoveRange()
+{
+	if (Tank)
+	{
+		float Distance = FVector::Dist(GetActorLocation(), Tank->GetActorLocation());
+
+		if (Distance <= MoveRange)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
 void AMiniTank::Move(float DeltaTime)
 {
 	FVector Current = GetActorLocation();
-	FVector Target = Tank->GetActorLocation() + (Tank->GetActorForwardVector() * 500.f);
+	//FVector Target = Tank->GetActorLocation() + (Tank->GetActorForwardVector() * 500.f);
+	FVector Target = Tank->GetActorLocation() + FVector(100.f, 100.f, 0.f);
 
 	RotateBase(Target);
 	
-	SetActorLocation(FMath::VInterpConstantTo(Current, Target, DeltaTime, 100.f));
+	float InterpSpeed = SpeedMoveTank;
+
+	SetActorLocation(FMath::VInterpConstantTo(Current, Target, DeltaTime, InterpSpeed));
 
 }
